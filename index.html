@@ -190,3 +190,92 @@ body{
 
   </div>
 </section>
+
+<!-- ================= SECTION 2 ================= -->
+
+<style>
+.section2{
+  position:relative;
+  min-height:100vh;
+  min-height:100dvh;
+  background:url("assets/bg/section2_bg.png") center/cover no-repeat;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 20px;
+  text-align:center;
+  color:#000;
+}
+
+/* Белый лёгкий overlay */
+.section2::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,0.35);
+  z-index:0;
+}
+
+.section2-content{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:900px;
+}
+
+/* Верхний блок (30% от верха) */
+.section2-top{
+  margin-top:30vh;
+}
+
+/* Нижний блок (30% от низа) */
+.section2-bottom{
+  margin-bottom:30vh;
+  position:relative;
+}
+
+/* ===== PRIMARY ЕДИНЫЙ РАЗМЕР ===== */
+.primary-text{
+  font-family:"PrimaryFont", serif;
+  font-size:clamp(42px,8.8vw,72px);
+  line-height:1.05;
+  margin:0;
+}
+
+/* Календарь */
+.calendar-wrapper{
+  position:relative;
+  display:inline-block;
+}
+
+.calendar-img{
+  width:200px;
+  max-width:60vw;
+}
+
+/* Сердце поверх 26 */
+.heart-img{
+  position:absolute;
+  top:42%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  width:45px;
+}
+</style>
+
+<section class="section2">
+
+  <div class="section2-content section2-top">
+    <p class="primary-text">Той салтанаты:</p>
+    <p class="primary-text">26.03.2026</p>
+  </div>
+
+  <div class="section2-content section2-bottom">
+    <div class="calendar-wrapper">
+      <img src="assets/bg/calendar.png" class="calendar-img" alt="calendar">
+      <img src="assets/bg/heart.png" class="heart-img" alt="heart">
+    </div>
+  </div>
+
+</section>
