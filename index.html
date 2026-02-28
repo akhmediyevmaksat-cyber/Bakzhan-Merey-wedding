@@ -1,17 +1,96 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="kk">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Video test</title>
-  <style>
-    body{ margin:0; background:#000; }
-    video{ width:100vw; height:100vh; object-fit:cover; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Бакжан Мерей</title>
+
+<style>
+
+/* ===== ШРИФТЫ ===== */
+@font-face {
+  font-family: 'Primary';
+  src: url('assets/fonts/Font1.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Secondary';
+  src: url('assets/fonts/Font2.woff2') format('woff2');
+}
+
+/* ===== БАЗА ===== */
+body{
+  margin:0;
+  background:black;
+  color:white;
+  font-family:'Primary', serif;
+}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;
+  min-height:100vh;
+  min-height:100dvh;
+  display:flex;
+  align-items:flex-end; /* 👈 текст внизу */
+  justify-content:center;
+  padding:40px 20px;
+  overflow:hidden;
+  text-align:center;
+}
+
+/* Видео */
+.bg-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+}
+
+/* Затемнение */
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  z-index:-1;
+}
+
+/* Контент */
+.hero-content{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:600px;
+}
+
+/* Основной текст */
+h1{
+  margin:0;
+  font-size: clamp(38px, 8vw, 64px);
+  letter-spacing:4px;
+  font-family:'Primary', serif; /* 👈 основной шрифт */
+}
+
+</style>
 </head>
+
 <body>
-  <video controls autoplay muted loop playsinline>
+
+<div class="hero">
+
+  <video autoplay muted loop playsinline class="bg-video">
     <source src="assets/bg/hero.mp4" type="video/mp4">
   </video>
+
+  <div class="overlay"></div>
+
+  <div class="hero-content">
+    <h1>Бакжан Мерей</h1>
+  </div>
+
+</div>
+
 </body>
 </html>
