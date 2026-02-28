@@ -1,189 +1,68 @@
-<!doctype html>
-<html lang="kk">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Бақжан Мерей</title>
+<!-- ================= HERO ================= -->
 
 <style>
-/* ===== ШРИФТЫ ===== */
-@font-face{
-  font-family:"PrimaryFont";
-  src:url("assets/fonts/primary.woff2") format("woff2");
-  font-weight:400;
-  font-style:normal;
-  font-display:swap;
-}
-@font-face{
-  font-family:"SecondaryFont";
-  src:url("assets/fonts/secondary.woff2") format("woff2");
-  font-weight:400;
-  font-style:normal;
-  font-display:swap;
-}
-
-/* ===== БАЗА ===== */
-*{ box-sizing:border-box; }
-html,body{ margin:0; padding:0; }
-body{
-  font-family:"PrimaryFont", serif;
-  color:#fff;
-  background:#000;
-}
-
-/* ===== ОБЩИЙ КОНТЕЙНЕР СЕКЦИЙ ===== */
-.section{
+.hero{
   position:relative;
   min-height:100vh;
   min-height:100dvh;
   display:flex;
-  align-items:center;
+  align-items:flex-end;
   justify-content:center;
-  text-align:center;
-  padding: clamp(42px, 7vw, 90px) 20px;
+  padding:60px 20px;
   overflow:hidden;
+  text-align:center;
+  color:white;
 }
 
-/* затемнение поверх фона для читаемости текста */
-.section::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: rgba(0,0,0,0.40); /* меняй плотность тут */
-  z-index:0;
-}
-
-/* контент поверх затемнения */
-.section .content{
-  position:relative;
-  z-index:1;
-  width:100%;
-  max-width: 820px;
-}
-
-/* заголовки/текст */
-.h1{
-  margin:0;
-  font-size:clamp(42px,8.8vw,72px);
-  letter-spacing:4px;
-  line-height:1.02;
-}
-.h2{
-  margin:0;
-  font-size:clamp(26px,6.2vw,44px);
-  letter-spacing:2px;
-  line-height:1.12;
-}
-.sub{
-  margin-top:14px;
-  font-family:"SecondaryFont", serif;
-  font-size:clamp(12px,3.5vw,20px);
-  letter-spacing:6px;
-  text-transform:uppercase;
-  opacity:.92;
-}
-
-/* ===== HERO (видео) ===== */
 .hero video{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
+  z-index:-2;
+}
+
+.hero .overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
   z-index:-1;
 }
 
-/* ===== ФОНЫ 7 СЕКЦИЙ ===== */
-.s1{ background:url("assets/bg/section1_bg.png") center/cover no-repeat; }
-.s2{ background:url("assets/bg/section2_bg.png") center/cover no-repeat; }
-.s3{ background:url("assets/bg/section3_bg.jpg") center/cover no-repeat; }
-.s4{ background:url("assets/bg/section4_bg.png") center/cover no-repeat; }
-.s5{ background:url("assets/bg/section5.png") center/cover no-repeat; }
-.s6{ background:url("assets/bg/restraunt.png") center/cover no-repeat; }
-/* на 7-ю секцию поставил section2_bg как заглушку — поменяешь на нужный файл */
-.s7{ background:url("assets/bg/section2_bg.png") center/cover no-repeat; }
+.hero-content{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:900px;
+}
 
-/* Если нужно, можно для каждой секции разное затемнение: */
-.s1::before{ background: rgba(0,0,0,0.45); }
-.s2::before{ background: rgba(0,0,0,0.38); }
-.s3::before{ background: rgba(0,0,0,0.42); }
-.s4::before{ background: rgba(0,0,0,0.40); }
-.s5::before{ background: rgba(0,0,0,0.40); }
-.s6::before{ background: rgba(0,0,0,0.46); }
-.s7::before{ background: rgba(0,0,0,0.40); }
+.main-title{
+  margin:0;
+  font-family:"PrimaryFont", serif;
+  font-size:clamp(42px,8.8vw,72px);
+  letter-spacing:4px;
+}
 
-/* текст внизу — если нужно (например для hero) */
-.bottom{
-  align-items:flex-end;
-  padding-bottom: clamp(44px, 9vw, 110px);
+.sub-title{
+  margin-top:18px;
+  font-family:"SecondaryFont", serif;
+  font-size:clamp(18px,4.5vw,28px); /* 👈 обновлено */
+  letter-spacing:6px;
+  text-transform:uppercase;
+  opacity:0.92;
 }
 </style>
-</head>
 
-<body>
-
-<!-- ===== HERO: видео + текст внизу ===== -->
-<header class="section hero bottom">
+<header class="hero">
   <video autoplay muted loop playsinline preload="auto">
     <source src="assets/bg/hero.mp4" type="video/mp4">
   </video>
 
-  <div class="content">
-    <h1 class="h1">Бақжан Мерей</h1>
-    <div class="sub">ҮЙЛЕНУ ТОЙЫ</div>
+  <div class="overlay"></div>
+
+  <div class="hero-content">
+    <h1 class="main-title">Бақжан Мерей</h1>
+    <div class="sub-title">ҮЙЛЕНУ ТОЙЫ</div>
   </div>
 </header>
-
-<!-- ===== 7 секций ===== -->
-
-<section class="section s1">
-  <div class="content">
-    <h2 class="h2">1-СЕКЦИЯ</h2>
-    <div class="sub">Мәтінді осы жерге</div>
-  </div>
-</section>
-
-<section class="section s2">
-  <div class="content">
-    <h2 class="h2">2-СЕКЦИЯ</h2>
-    <div class="sub">Мәтінді осы жерге</div>
-  </div>
-</section>
-
-<section class="section s3">
-  <div class="content">
-    <h2 class="h2">3-СЕКЦИЯ</h2>
-    <div class="sub">Мәтінді осы жерге</div>
-  </div>
-</section>
-
-<section class="section s4">
-  <div class="content">
-    <h2 class="h2">4-СЕКЦИЯ</h2>
-    <div class="sub">Мәтінді осы жерге</div>
-  </div>
-</section>
-
-<section class="section s5">
-  <div class="content">
-    <h2 class="h2">5-СЕКЦИЯ</h2>
-    <div class="sub">Мәтінді осы жерге</div>
-  </div>
-</section>
-
-<section class="section s6">
-  <div class="content">
-    <h2 class="h2">6-СЕКЦИЯ</h2>
-    <div class="sub">Мәтінді осы жерге</div>
-  </div>
-</section>
-
-<section class="section s7">
-  <div class="content">
-    <h2 class="h2">7-СЕКЦИЯ</h2>
-    <div class="sub">Мәтінді осы жерге</div>
-  </div>
-</section>
-
-</body>
-</html>
