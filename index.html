@@ -1,331 +1,100 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="kk">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Бақжан • Мерей — Тойға шақыру</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Бақжан • Мерей</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
 
-  <style>
-    :root{
-      --text:#1b1b1b;
-      --muted:rgba(27,27,27,.70);
-      --line:rgba(27,27,27,.14);
-      --glass:rgba(255,255,255,.58);
-      --glass2:rgba(255,255,255,.44);
-      --shadow:0 18px 55px rgba(0,0,0,.12);
-      --radius:28px;
-    }
+/* ===== ШРИФТЫ ===== */
+@font-face {
+  font-family: 'Primary';
+  src: url('assets/fonts/Font1.woff2') format('woff2');
+}
 
-    *{box-sizing:border-box}
-    body{margin:0; color:var(--text); font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+@font-face {
+  font-family: 'Secondary';
+  src: url('assets/fonts/Font2.woff2') format('woff2');
+}
 
-    /* Background like Pinterest */
-    .page{
-      min-height:100svh;
-      display:flex;
-      justify-content:center;
-      padding:18px 14px 44px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.35)),
-        url("assets/bg.png");
-      background-size:cover;
-      background-position:center;
-    }
+/* ===== БАЗА ===== */
+body{
+  margin:0;
+  font-family:'Primary', serif;
+  background:black;
+  color:white;
+}
 
-    /* Main invitation card */
-    .card{
-      width:min(580px,100%);
-      border-radius:var(--radius);
-      background:linear-gradient(180deg, var(--glass), var(--glass2));
-      box-shadow:var(--shadow);
-      border:1px solid rgba(255,255,255,.65);
-      backdrop-filter: blur(10px);
-      overflow:hidden;
-      position:relative;
-    }
+/* ===== HERO СЕКЦИЯ ===== */
+.hero{
+  position:relative;
+  min-height:100vh;
+  min-height:100dvh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+}
 
-    /* Soft floral-ish emboss corners (no extra images needed) */
-    .card::before,.card::after{
-      content:"";
-      position:absolute;
-      width:260px;height:260px;
-      pointer-events:none;
-      background:
-        radial-gradient(circle at 30% 25%, rgba(255,255,255,.95), rgba(255,255,255,0) 58%),
-        radial-gradient(circle at 65% 70%, rgba(255,255,255,.70), rgba(255,255,255,0) 62%);
-      opacity:.55;
-    }
-    .card::before{top:-95px; left:-95px;}
-    .card::after{bottom:-110px; right:-110px; opacity:.45;}
+/* Видео */
+.bg-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+}
 
-    header{
-      padding:34px 22px 18px;
-      text-align:center;
-    }
+/* Затемнение */
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  z-index:-1;
+}
 
-    .script{
-      font-family:"Great Vibes", cursive;
-      font-size:42px;
-      line-height:1;
-      margin:0 0 8px;
-      font-weight:400;
-    }
+/* Контент */
+.hero-content{
+  position:relative;
+  z-index:1;
+  padding:20px;
+}
 
-    .names{
-      font-family:"Cormorant Garamond", serif;
-      font-weight:600;
-      letter-spacing:.02em;
-      font-size:30px;
-      margin:0 0 10px;
-    }
+.hero h1{
+  font-family:'Secondary', serif;
+  font-size: clamp(36px, 7vw, 60px);
+  letter-spacing:4px;
+  margin:0;
+}
 
-    /* Date highlight like your screenshot */
-    .date-wrap{
-      display:flex;
-      justify-content:center;
-      margin:12px 0 10px;
-    }
-    .date{
-      font-family:"Cormorant Garamond", serif;
-      font-weight:600;
-      font-size:34px;
-      letter-spacing:.02em;
-      padding:10px 18px;
-      border-radius:999px;
-      background:rgba(255,255,255,.65);
-      border:1px solid rgba(27,27,27,.10);
-      box-shadow: 0 10px 30px rgba(0,0,0,.08);
-    }
+.date{
+  margin-top:15px;
+  font-size: clamp(16px, 4vw, 20px);
+  letter-spacing:3px;
+}
 
-    .subtitle{
-      max-width:42ch;
-      margin:10px auto 0;
-      color:var(--muted);
-      font-size:14.5px;
-      line-height:1.6;
-    }
-
-    .divider{height:1px; background:var(--line); margin:18px 22px 0;}
-
-    main{padding:16px 22px 10px;}
-
-    .section{padding:14px 0;}
-    .h{
-      font-family:"Cormorant Garamond", serif;
-      font-weight:600;
-      font-size:20px;
-      margin:0 0 10px;
-      letter-spacing:.01em;
-    }
-
-    .box{
-      background:rgba(255,255,255,.50);
-      border:1px solid rgba(27,27,27,.10);
-      border-radius:20px;
-      padding:12px 14px;
-    }
-
-    .program-item{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      padding:10px 0;
-      border-bottom:1px dashed rgba(27,27,27,.16);
-    }
-    .program-item:last-child{border-bottom:none; padding-bottom:2px;}
-    .time{font-weight:600; white-space:nowrap;}
-    .what{color:var(--text);}
-
-    .count{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:10px;
-      margin-top:10px;
-    }
-    .pill{
-      background:rgba(255,255,255,.50);
-      border:1px solid rgba(27,27,27,.10);
-      border-radius:18px;
-      padding:10px 8px;
-      text-align:center;
-    }
-    .n{
-      font-family:"Cormorant Garamond", serif;
-      font-size:28px;
-      font-weight:700;
-      line-height:1.05;
-    }
-    .t{
-      font-size:11px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      color:rgba(27,27,27,.55);
-      margin-top:4px;
-    }
-
-    .photo{
-      width:100%;
-      border-radius:18px;
-      border:1px solid rgba(27,27,27,.10);
-      overflow:hidden;
-      background:rgba(255,255,255,.55);
-    }
-    .photo img{
-      width:100%;
-      display:block;
-      aspect-ratio: 16 / 10;
-      object-fit: cover;
-    }
-
-    .btns{display:grid; gap:10px; margin-top:12px;}
-    a.btn{
-      display:flex; justify-content:center; align-items:center;
-      padding:13px 14px;
-      border-radius:18px;
-      text-decoration:none;
-      color:var(--text);
-      border:1px solid rgba(27,27,27,.12);
-      background:rgba(255,255,255,.62);
-      font-weight:500;
-    }
-
-    footer{
-      padding: 8px 22px 26px;
-      text-align:center;
-      color:rgba(27,27,27,.55);
-      font-size:12.5px;
-      line-height:1.55;
-    }
-
-    @media (min-width:820px){
-      .page{padding:34px 18px 60px;}
-      header{padding:44px 34px 20px;}
-      .divider{margin:22px 34px 0;}
-      main{padding:18px 34px 10px;}
-      footer{padding:10px 34px 32px;}
-      .script{font-size:52px;}
-      .names{font-size:34px;}
-      .date{font-size:38px;}
-    }
-  </style>
+</style>
 </head>
 
 <body>
-  <div class="page">
-    <article class="card">
-      <header>
-        <h2 class="script">Wedding</h2>
-        <h1 class="names">Бақжан • Мерей</h1>
 
-        <div class="date-wrap">
-          <div class="date">26.03.2026</div>
-        </div>
+<div class="hero">
 
-        <p class="subtitle">
-          Құрметті қонақтар, сіздерді қуанышымызға ортақтасып,
-          тойымыздың қадірлі қонағы болуға шақырамыз.
-        </p>
-      </header>
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="assets/bg/hero.mp4" type="video/mp4">
+  </video>
 
-      <div class="divider"></div>
+  <div class="overlay"></div>
 
-      <main>
-        <section class="section">
-          <div class="h">Кері санақ</div>
-          <div class="count">
-            <div class="pill"><div class="n" id="d">—</div><div class="t">күн</div></div>
-            <div class="pill"><div class="n" id="h">—</div><div class="t">сағ</div></div>
-            <div class="pill"><div class="n" id="m">—</div><div class="t">мин</div></div>
-            <div class="pill"><div class="n" id="s">—</div><div class="t">сек</div></div>
-          </div>
-        </section>
-
-        <section class="section">
-          <div class="h">Бағдарлама</div>
-          <div class="box">
-            <div class="program-item">
-              <div class="time">18:00</div>
-              <div class="what">Беташар</div>
-            </div>
-            <div class="program-item">
-              <div class="time">19:00</div>
-              <div class="what">Той</div>
-            </div>
-          </div>
-        </section>
-
-        <section class="section">
-          <div class="h">Өтетін орны</div>
-
-          <div class="photo">
-            <img src="assets/hall.jpg" alt="Shymkent Hall">
-          </div>
-
-          <div style="height:10px"></div>
-
-          <div class="box">
-            <div style="font-weight:600; margin-bottom:4px;">Shymkent Hall</div>
-            <div style="color:var(--muted); font-size:14px;">
-              Шымкент қ., Проспект Байдібек би, 246/3
-            </div>
-          </div>
-
-          <div class="btns">
-            <a class="btn" target="_blank" rel="noopener"
-               href="https://www.google.com/maps/search/?api=1&query=Shymkent%20Hall%20%D0%91%D0%B0%D0%B9%D0%B4%D1%96%D0%B1%D0%B5%D0%BA%20%D0%B1%D0%B8%20246%2F3">
-              Карта (Google Maps)
-            </a>
-            <a class="btn" target="_blank" rel="noopener"
-               href="https://2gis.kz/search/Shymkent%20Hall%20%D0%91%D0%B0%D0%B9%D0%B4%D1%96%D0%B1%D0%B5%D0%BA%20%D0%B1%D0%B8%20246%2F3">
-              Карта (2GIS)
-            </a>
-          </div>
-        </section>
-      </main>
-
-      <footer>
-        Сізді күтеміз 🤍
-      </footer>
-    </article>
+  <div class="hero-content">
+    <h1>Бақжан • Мерей</h1>
+    <div class="date">26.03.2026</div>
   </div>
 
-  <script>
-    // Countdown to 26.03.2026 18:00 (local)
-    const target = new Date("2026-03-26T18:00:00");
-    const $d = document.getElementById("d");
-    const $h = document.getElementById("h");
-    const $m = document.getElementById("m");
-    const $s = document.getElementById("s");
+</div>
 
-    const pad = (n) => String(n).padStart(2,"0");
-
-    function tick(){
-      const now = new Date();
-      let diff = target - now;
-
-      if(diff <= 0){
-        $d.textContent = "00"; $h.textContent = "00"; $m.textContent = "00"; $s.textContent = "00";
-        return;
-      }
-
-      const sec = Math.floor(diff / 1000);
-      const days = Math.floor(sec / 86400);
-      const hrs  = Math.floor((sec % 86400) / 3600);
-      const mins = Math.floor((sec % 3600) / 60);
-      const secs = sec % 60;
-
-      $d.textContent = pad(days);
-      $h.textContent = pad(hrs);
-      $m.textContent = pad(mins);
-      $s.textContent = pad(secs);
-    }
-
-    tick();
-    setInterval(tick, 1000);
-  </script>
 </body>
 </html>
