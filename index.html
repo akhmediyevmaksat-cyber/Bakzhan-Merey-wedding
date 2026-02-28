@@ -110,15 +110,15 @@ body{
   position:relative;
   min-height:100vh;
   min-height:100dvh;
-  background:url("assets/bg/section1_bg.png") center/cover no-repeat;
+  background:url("assets/bg/section1_bg.jpg") center/cover no-repeat; /* 👈 JPG */
   display:flex;
   align-items:flex-start;
   justify-content:center;
-  padding-top:12vh; /* ~10-15% сверху */
+  padding-top:9vh; /* 👈 было 12vh, теперь выше */
   padding-left:20px;
   padding-right:20px;
   text-align:center;
-  color:#000; /* 👈 теперь текст чёрный */
+  color:#000;
 }
 
 /* Белый overlay */
@@ -126,7 +126,7 @@ body{
   content:"";
   position:absolute;
   inset:0;
-  background:rgba(255,255,255,0.45); /* 👈 белое затемнение */
+  background:rgba(255,255,255,0.40);
   z-index:0;
 }
 
@@ -141,7 +141,7 @@ body{
 .s1-primary{
   font-family:"PrimaryFont", serif;
   font-size:clamp(42px,8.8vw,72px);
-  line-height:1.1;
+  line-height:1.05; /* 👈 было 1.1, теперь плотнее */
   margin:0;
 }
 
@@ -151,37 +151,34 @@ body{
   font-size:clamp(18px,4.5vw,28px);
   letter-spacing:4px;
   text-transform:uppercase;
+  line-height:1.15; /* 👈 плотнее */
   margin:0;
 }
 
-/* Отступы между блоками */
+/* Отступы между группами */
 .group{
-  margin-top:28px;
+  margin-top:22px; /* 👈 было 28px */
 }
 </style>
 
 <section class="section1">
   <div class="section1-content">
 
-    <!-- Құрметті қонақтар -->
     <div>
       <p class="s1-primary">Құрметті</p>
       <p class="s1-primary">қонақтар!</p>
     </div>
 
-    <!-- СІЗДЕРДІ БАЛАЛАРЫМЫЗ -->
     <div class="group">
       <p class="s1-secondary">СІЗДЕРДІ</p>
       <p class="s1-secondary">БАЛАЛАРЫМЫЗ</p>
     </div>
 
-    <!-- Бақжан мен Мерейдің -->
     <div class="group">
       <p class="s1-primary">Бақжан мен</p>
       <p class="s1-primary">Мерейдің</p>
     </div>
 
-    <!-- ҮЛКЕН БЛОК -->
     <div class="group">
       <p class="s1-secondary">ҮЙЛЕНУ ТОЙЫНА</p>
       <p class="s1-secondary">АРНАЛҒАН</p>
