@@ -386,3 +386,103 @@ body{
   </div>
 </section>
 
+<!-- ================= SECTION 4 ================= -->
+
+<style>
+.section4{
+  position:relative;
+  min-height:100vh;
+  min-height:100dvh;
+  background:url("assets/bg/section4_bg.png") center/cover no-repeat;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding-top:12vh; /* как в секции 1 */
+  padding-left:20px;
+  padding-right:20px;
+  text-align:center;
+  color:#000;
+}
+
+/* белый мягкий overlay */
+.section4::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,0.40);
+  z-index:0;
+}
+
+.section4-content{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:900px;
+}
+
+/* ===== PRIMARY ===== */
+.s4-primary{
+  font-family:"PrimaryFont", serif;
+  font-size:clamp(42px,8.8vw,72px);
+  line-height:1.05;
+  margin:0;
+}
+
+/* ===== SECONDARY ===== */
+.s4-secondary{
+  font-family:"SecondaryFont", serif;
+  font-size:clamp(18px,4.5vw,28px);
+  letter-spacing:5px;
+  text-transform:uppercase;
+  margin:10px 0 0 0;
+}
+
+/* Картинка ресторана */
+.restraunt-img{
+  width:280px; /* примерно как ширина надписи */
+  max-width:70vw;
+  height:auto;
+  margin:28px auto;
+  display:block;
+}
+
+/* Кнопка */
+.map-btn{
+  display:inline-block;
+  margin-top:36px;
+  padding:14px 36px;
+  border-radius:999px;
+  background:linear-gradient(135deg, #000 0%, #222 50%, #000 100%);
+  color:#fff;
+  text-decoration:none;
+  font-family:"SecondaryFont", serif;
+  font-size:clamp(14px,3.5vw,20px);
+  letter-spacing:4px;
+  text-transform:uppercase;
+  transition:all 0.4s ease;
+}
+
+.map-btn:hover{
+  background:linear-gradient(135deg, #222 0%, #000 50%, #222 100%);
+  transform:translateY(-3px);
+}
+</style>
+
+<section class="section4">
+  <div class="section4-content">
+
+    <p class="s4-primary">Мекенжай:</p>
+
+    <img src="assets/bg/restraunt.png" class="restraunt-img" alt="Shymkent Hall">
+
+    <p class="s4-secondary">ШЫМКЕНТ ҚАЛАСЫ</p>
+    <p class="s4-secondary">БӘЙДІБЕК БИ, 246/3</p>
+
+    <p class="s4-primary" style="margin-top:22px;">Shymkent Hall</p>
+
+    <p class="s4-secondary">МЕЙРАМХАНАСЫ</p>
+
+    <a href="#" class="map-btn">КАРТАНЫ АШУ</a>
+
+  </div>
+</section>
