@@ -533,7 +533,7 @@ body{
   position:relative;
   min-height:100vh;
   min-height:100dvh;
-  background:url("assets/bg/section5.png") center/cover no-repeat;
+  background:url("assets/bg/section5_bg.png") center/cover no-repeat;
   display:flex;
   align-items:flex-start;
   justify-content:center;
@@ -541,9 +541,10 @@ body{
   padding-left:20px;
   padding-right:20px;
   text-align:center;
-  color:#000;
+  color:#000; /* текст черный */
 }
 
+/* Белый overlay */
 .section5::before{
   content:"";
   position:absolute;
@@ -603,9 +604,12 @@ body{
   margin-top:12px;
 }
 
+/* Варианты ответа теперь SECONDARY */
 .radio-option{
-  font-family:"PrimaryFont", serif;
-  font-size:18px;
+  font-family:"SecondaryFont", serif;
+  font-size:clamp(16px,4vw,22px);
+  letter-spacing:3px;
+  text-transform:uppercase;
   cursor:pointer;
 }
 
