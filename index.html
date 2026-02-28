@@ -721,14 +721,14 @@ body{
   opacity:0.95;
 }
 
-/* ===== Таймер без рамок, в одну строку ===== */
+/* ===== Таймер ===== */
 .timer{
   margin-top:36px;
   display:flex;
   justify-content:center;
   align-items:flex-end;
-  gap:28px;
-  flex-wrap:nowrap; /* одна строка */
+  gap:14px;
+  flex-wrap:nowrap;
 }
 
 .timer-item{
@@ -753,9 +753,16 @@ body{
   opacity:0.9;
 }
 
-/* Отступ после таймера */
+.timer-separator{
+  font-family:"PrimaryFont", serif;
+  font-size:clamp(36px,7vw,70px);
+  line-height:1;
+  padding-bottom:22px;
+}
+
+/* 🔽 Опустили блок ҚҰРМЕТПЕН */
 .s6-gap{
-  margin-top:44px;
+  margin-top:70px; /* было 44px */
 }
 </style>
 
@@ -770,15 +777,21 @@ body{
         <div class="timer-label">КҮН</div>
       </div>
 
+      <div class="timer-separator">:</div>
+
       <div class="timer-item">
         <div class="timer-number" id="cd-hours">00</div>
         <div class="timer-label">САҒ</div>
       </div>
 
+      <div class="timer-separator">:</div>
+
       <div class="timer-item">
         <div class="timer-number" id="cd-mins">00</div>
         <div class="timer-label">МИН</div>
       </div>
+
+      <div class="timer-separator">:</div>
 
       <div class="timer-item">
         <div class="timer-number" id="cd-secs">00</div>
@@ -795,7 +808,7 @@ body{
       <p class="s6-secondary" style="margin-top:28px;">ҚҰРМЕТПЕН</p>
       <p class="s6-secondary">ТОЙ ИЕЛЕРІ:</p>
 
-      <p class="s6-primary" style="margin-top:18px;">Камшат Жандаулет</p>
+      <p class="s6-primary" style="margin-top:18px;">Камшат - Жандаулет</p>
     </div>
 
   </div>
@@ -803,7 +816,7 @@ body{
 
 <script>
 (function(){
-  const target = new Date(2026, 2, 26, 19, 0, 0); // 26.03.2026 19:00
+  const target = new Date(2026, 2, 26, 19, 0, 0);
 
   const elDays = document.getElementById("cd-days");
   const elHours = document.getElementById("cd-hours");
