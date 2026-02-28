@@ -224,13 +224,13 @@ body{
   max-width:900px;
 }
 
-/* Текст */
+/* Текст подняли чуть выше */
 .section2-top{
-  margin-top:42vh;
+  margin-top:38vh; /* было 42vh */
 }
 
 .section2-bottom{
-  margin-bottom:26vh; /* 👈 календарь ниже */
+  margin-bottom:26vh;
   position:relative;
 }
 
@@ -242,23 +242,23 @@ body{
   margin:0;
 }
 
-/* Календарь увеличили ещё на ~15% */
+/* Календарь */
 .calendar-wrapper{
   position:relative;
   display:inline-block;
 }
 
 .calendar-img{
-  width:415px; /* было 360 */
+  width:415px;
   max-width:85vw;
 }
 
-/* Сердце оставляем как было */
+/* Сердце — ниже на ~2 высоты и левее на ~0.5 ширины */
 .heart-img{
   position:absolute;
-  top:55%;
-  left:56%;
-  transform:translate(-50%, -50%);
+  top:65%;      /* было 55% → ниже */
+  left:51%;     /* было 56% → левее */
+  transform:translate(-70%, -50%); /* дополнительно левее */
   width:36px;
 }
 </style>
