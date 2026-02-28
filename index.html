@@ -559,7 +559,6 @@ body{
   max-width:700px;
 }
 
-/* PRIMARY */
 .s5-primary{
   font-family:"PrimaryFont", serif;
   font-size:clamp(42px,8.8vw,72px);
@@ -567,7 +566,6 @@ body{
   margin:0;
 }
 
-/* SECONDARY */
 .s5-secondary{
   font-family:"SecondaryFont", serif;
   font-size:clamp(18px,4.5vw,28px);
@@ -626,64 +624,6 @@ body{
   cursor:pointer;
   overflow:hidden;
 }
-
-.submit-btn::after{
-  content:"";
-  position:absolute;
-  top:0;
-  left:-120%;
-  width:100%;
-  height:100%;
-  background:linear-gradient(
-    120deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.4) 50%,
-    rgba(255,255,255,0) 100%
-  );
-  transform:skewX(-20deg);
-  animation:shine 3s infinite;
-}
-
-@keyframes shine{
-  0% { left:-120%; }
-  60% { left:120%; }
-  100% { left:120%; }
-}
-
-/* ===== МОДАЛЬНОЕ ОКНО ===== */
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.6);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  opacity:0;
-  visibility:hidden;
-  transition:all 0.3s ease;
-  z-index:9999;
-}
-
-.modal.active{
-  opacity:1;
-  visibility:visible;
-}
-
-.modal-content{
-  background:#fff;
-  padding:40px 50px;
-  border-radius:20px;
-  text-align:center;
-  max-width:90%;
-}
-
-.modal-text{
-  font-family:"SecondaryFont", serif;
-  font-size:clamp(20px,5vw,32px);
-  letter-spacing:5px;
-  text-transform:uppercase;
-  color:#000;
-}
 </style>
 
 <section class="section5">
@@ -692,61 +632,37 @@ body{
     <p class="s5-primary">Тойға келетініңізді</p>
     <p class="s5-primary">растауыңызды өтінеміз</p>
 
-    <form class="rsvp-form" id="rsvpForm">
+    <!-- FORM SUBMIT НА ПОЧТУ -->
+    <form class="rsvp-form" 
+          action="https://formsubmit.co/maxakhmediyevv@icloud.com" 
+          method="POST">
+
+      <input type="hidden" name="_subject" value="Жаңа RSVP жауап!">
+      <input type="hidden" name="_captcha" value="false">
 
       <label class="s5-secondary">АТЫ-ЖӨНІҢІЗ</label>
-      <input type="text" name="name" required>
+      <input type="text" name="Аты-жөні" required>
 
       <label class="s5-secondary">ТОЙҒА КЕЛЕСІЗ БЕ?</label>
 
       <div class="radio-group">
         <label class="radio-option">
-          <input type="radio" name="attendance" value="ӘРИНЕ КЕЛЕМІН" required>
+          <input type="radio" name="Жауап" value="ӘРИНЕ КЕЛЕМІН" required>
           ӘРИНЕ КЕЛЕМІН
         </label>
         <label class="radio-option">
-          <input type="radio" name="attendance" value="ЖҰБАЙЫММЕН КЕЛЕМІН">
+          <input type="radio" name="Жауап" value="ЖҰБАЙЫММЕН КЕЛЕМІН">
           ЖҰБАЙЫММЕН КЕЛЕМІН
         </label>
         <label class="radio-option">
-          <input type="radio" name="attendance" value="ӨКІНІШКЕ ОРАЙ, КЕЛЕ АЛМАЙМЫН">
+          <input type="radio" name="Жауап" value="ӨКІНІШКЕ ОРАЙ, КЕЛЕ АЛМАЙМЫН">
           ӨКІНІШКЕ ОРАЙ, КЕЛЕ АЛМАЙМЫН
         </label>
       </div>
 
       <button type="submit" class="submit-btn">ЖІБЕРУ</button>
+
     </form>
 
   </div>
 </section>
-
-<!-- МОДАЛЬНОЕ ОКНО -->
-<div class="modal" id="successModal">
-  <div class="modal-content">
-    <div class="modal-text">СИЗДІ ТОЙДА КҮТЕМІЗ</div>
-  </div>
-</div>
-
-<script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbwUe6F8-nCZW7t2ZmAYKlQ1Su8NLmrMhOTLgFhwwaVUeRh1LfdYSda3ZPUZkdgsjn0Q/exec";
-
-document.getElementById("rsvpForm").addEventListener("submit", function(e){
-  e.preventDefault();
-
-  const formData = new FormData(this);
-
-  fetch(scriptURL, {
-    method: "POST",
-    mode: "no-cors",
-    body: formData
-  });
-
-  document.getElementById("successModal").classList.add("active");
-  this.reset();
-});
-
-/* Закрытие при клике вне окна */
-document.getElementById("successModal").addEventListener("click", function(){
-  this.classList.remove("active");
-});
-</script>
