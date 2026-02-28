@@ -223,8 +223,9 @@ body{
   max-width:900px;
 }
 
+/* 👇 Текст подняли выше */
 .section2-top{
-  margin-top:38vh;
+  margin-top:34vh; /* было 38vh */
 }
 
 .section2-bottom{
@@ -249,17 +250,15 @@ body{
   max-width:85vw;
 }
 
-/* Пульсация */
 @keyframes pulse{
   0%   { transform:translate(-60%, -50%) scale(1); }
   50%  { transform:translate(-60%, -50%) scale(1.15); }
   100% { transform:translate(-60%, -50%) scale(1); }
 }
 
-/* ❤️ Сердце */
 .heart-img{
   position:absolute;
-  top:78.5%;   /* было 80% → микро вверх */
+  top:78.5%;
   left:52%;
   width:36px;
   animation:pulse 1.6s ease-in-out infinite;
