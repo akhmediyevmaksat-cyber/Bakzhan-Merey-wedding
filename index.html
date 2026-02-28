@@ -224,18 +224,17 @@ body{
   max-width:900px;
 }
 
-/* Текст опустили ещё ниже */
+/* Текст */
 .section2-top{
-  margin-top:42vh; /* было 36vh */
+  margin-top:42vh;
 }
 
-/* Нижний блок */
 .section2-bottom{
-  margin-bottom:30vh;
+  margin-bottom:26vh; /* 👈 календарь ниже */
   position:relative;
 }
 
-/* ===== PRIMARY ЕДИНЫЙ РАЗМЕР ===== */
+/* ===== PRIMARY ===== */
 .primary-text{
   font-family:"PrimaryFont", serif;
   font-size:clamp(42px,8.8vw,72px);
@@ -243,24 +242,24 @@ body{
   margin:0;
 }
 
-/* Календарь увеличили ещё */
+/* Календарь увеличили ещё на ~15% */
 .calendar-wrapper{
   position:relative;
   display:inline-block;
 }
 
 .calendar-img{
-  width:360px; /* было 300 */
-  max-width:80vw;
+  width:415px; /* было 360 */
+  max-width:85vw;
 }
 
-/* Сердце уменьшили и опустили */
+/* Сердце оставляем как было */
 .heart-img{
   position:absolute;
-  top:55%;      /* было 48% */
+  top:55%;
   left:56%;
   transform:translate(-50%, -50%);
-  width:36px;   /* было 60px */
+  width:36px;
 }
 </style>
 
