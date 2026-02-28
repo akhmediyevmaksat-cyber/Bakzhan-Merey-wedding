@@ -397,14 +397,13 @@ body{
   display:flex;
   align-items:flex-start;
   justify-content:center;
-  padding-top:12vh; /* как в секции 1 */
+  padding-top:12vh;
   padding-left:20px;
   padding-right:20px;
   text-align:center;
   color:#000;
 }
 
-/* белый мягкий overlay */
 .section4::before{
   content:"";
   position:absolute;
@@ -420,51 +419,86 @@ body{
   max-width:900px;
 }
 
-/* ===== PRIMARY ===== */
+/* PRIMARY */
 .s4-primary{
   font-family:"PrimaryFont", serif;
   font-size:clamp(42px,8.8vw,72px);
-  line-height:1.05;
+  line-height:1.15; /* чуть больше межстрочное */
   margin:0;
 }
 
-/* ===== SECONDARY ===== */
+/* SECONDARY */
 .s4-secondary{
   font-family:"SecondaryFont", serif;
   font-size:clamp(18px,4.5vw,28px);
   letter-spacing:5px;
   text-transform:uppercase;
-  margin:10px 0 0 0;
+  line-height:1.25; /* чуть больше */
+  margin:12px 0 0 0;
 }
 
-/* Картинка ресторана */
+/* Картинка ресторана (-20%) */
 .restraunt-img{
-  width:280px; /* примерно как ширина надписи */
-  max-width:70vw;
+  width:220px; /* было 280 */
+  max-width:60vw;
   height:auto;
   margin:28px auto;
   display:block;
 }
 
-/* Кнопка */
+/* ===== КНОПКА ===== */
 .map-btn{
-  display:inline-block;
-  margin-top:36px;
-  padding:14px 36px;
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+  margin-top:56px; /* кнопка ниже */
+  padding:14px 40px 14px 60px;
   border-radius:999px;
-  background:linear-gradient(135deg, #000 0%, #222 50%, #000 100%);
+  background:#000;
   color:#fff;
   text-decoration:none;
   font-family:"SecondaryFont", serif;
   font-size:clamp(14px,3.5vw,20px);
   letter-spacing:4px;
   text-transform:uppercase;
+  overflow:hidden;
   transition:all 0.4s ease;
 }
 
-.map-btn:hover{
-  background:linear-gradient(135deg, #222 0%, #000 50%, #222 100%);
-  transform:translateY(-3px);
+/* Блеск */
+.map-btn::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(
+    120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.4) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  transform:skewX(-20deg);
+  animation:shine 3s infinite;
+}
+
+@keyframes shine{
+  0% { left:-120%; }
+  60% { left:120%; }
+  100% { left:120%; }
+}
+
+/* Иконка 2GIS */
+.map-btn img{
+  position:absolute;
+  left:8px;
+  height:100%;
+  max-height:42px;
+  width:auto;
+  border-radius:8px;
+  object-fit:cover;
 }
 </style>
 
@@ -482,7 +516,12 @@ body{
 
     <p class="s4-secondary">МЕЙРАМХАНАСЫ</p>
 
-    <a href="#" class="map-btn">КАРТАНЫ АШУ</a>
+    <a href="https://2gis.kz/shymkent/geo/70000001025888783/69.614775,42.351510" 
+       target="_blank" 
+       class="map-btn">
+        <img src="assets/bg/2gis.png" alt="2GIS">
+        КАРТАНЫ АШУ
+    </a>
 
   </div>
 </section>
