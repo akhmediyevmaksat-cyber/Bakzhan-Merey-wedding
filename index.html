@@ -525,3 +525,195 @@ body{
 
   </div>
 </section>
+
+<!-- ================= SECTION 5 ================= -->
+
+<style>
+.section5{
+  position:relative;
+  min-height:100vh;
+  min-height:100dvh;
+  background:url("assets/bg/section5.png") center/cover no-repeat;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding-top:12vh;
+  padding-left:20px;
+  padding-right:20px;
+  text-align:center;
+  color:#000;
+}
+
+.section5::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,0.40);
+  z-index:0;
+}
+
+.section5-content{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:700px;
+}
+
+/* PRIMARY */
+.s5-primary{
+  font-family:"PrimaryFont", serif;
+  font-size:clamp(42px,8.8vw,72px);
+  line-height:1.1;
+  margin:0;
+}
+
+/* SECONDARY */
+.s5-secondary{
+  font-family:"SecondaryFont", serif;
+  font-size:clamp(18px,4.5vw,28px);
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin-top:28px;
+}
+
+/* форма */
+.rsvp-form{
+  margin-top:40px;
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+}
+
+/* инпут */
+.rsvp-form input[type="text"]{
+  padding:14px 20px;
+  border-radius:12px;
+  border:1px solid rgba(0,0,0,0.2);
+  font-family:"PrimaryFont", serif;
+  font-size:18px;
+  text-align:center;
+  background:rgba(255,255,255,0.9);
+}
+
+/* радио */
+.radio-group{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:12px;
+}
+
+.radio-option{
+  font-family:"PrimaryFont", serif;
+  font-size:18px;
+  cursor:pointer;
+}
+
+.radio-option input{
+  margin-right:8px;
+}
+
+/* кнопка */
+.submit-btn{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-top:30px;
+  padding:14px 40px;
+  border-radius:999px;
+  background:#000;
+  color:#fff;
+  font-family:"SecondaryFont", serif;
+  font-size:clamp(14px,3.5vw,20px);
+  letter-spacing:4px;
+  text-transform:uppercase;
+  border:none;
+  cursor:pointer;
+  overflow:hidden;
+}
+
+/* блеск */
+.submit-btn::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(
+    120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.4) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  transform:skewX(-20deg);
+  animation:shine 3s infinite;
+}
+
+@keyframes shine{
+  0% { left:-120%; }
+  60% { left:120%; }
+  100% { left:120%; }
+}
+</style>
+
+<section class="section5">
+  <div class="section5-content">
+
+    <p class="s5-primary">Тойға келетініңізді</p>
+    <p class="s5-primary">растауыңызды өтінеміз</p>
+
+    <form class="rsvp-form" id="rsvpForm">
+
+      <label class="s5-secondary">АТЫ-ЖӨНІҢІЗ</label>
+      <input type="text" name="name" required>
+
+      <label class="s5-secondary">ТОЙҒА КЕЛЕСІЗ БЕ?</label>
+
+      <div class="radio-group">
+        <label class="radio-option">
+          <input type="radio" name="attendance" value="ӘРИНЕ КЕЛЕМІН" required>
+          ӘРИНЕ КЕЛЕМІН
+        </label>
+
+        <label class="radio-option">
+          <input type="radio" name="attendance" value="ЖҰБАЙЫММЕН КЕЛЕМІН">
+          ЖҰБАЙЫММЕН КЕЛЕМІН
+        </label>
+
+        <label class="radio-option">
+          <input type="radio" name="attendance" value="ӨКІНІШКЕ ОРАЙ, КЕЛЕ АЛМАЙМЫН">
+          ӨКІНІШКЕ ОРАЙ, КЕЛЕ АЛМАЙМЫН
+        </label>
+      </div>
+
+      <button type="submit" class="submit-btn">ЖІБЕРУ</button>
+
+    </form>
+
+  </div>
+</section>
+
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbwUe6F8-nCZW7t2ZmAYKlQ1Su8NLmrMhOTLgFhwwaVUeRh1LfdYSda3ZPUZkdgsjn0Q/exec";
+
+document.getElementById("rsvpForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const formData = new URLSearchParams(new FormData(this)).toString();
+
+  fetch(scriptURL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: formData
+  })
+  .then(() => {
+    alert("Жауабыңыз қабылданды!");
+    this.reset();
+  })
+  .catch(() => alert("Қате пайда болды"));
+});
+</script>
