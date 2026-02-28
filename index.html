@@ -249,13 +249,20 @@ body{
   max-width:85vw;
 }
 
-/* ❤️ СЕРДЦЕ ОБНОВЛЕНО */
+/* ❤️ ПУЛЬСАЦИЯ */
+@keyframes pulse{
+  0%   { transform:translate(-60%, -50%) scale(1); }
+  50%  { transform:translate(-60%, -50%) scale(1.15); }
+  100% { transform:translate(-60%, -50%) scale(1); }
+}
+
+/* ❤️ СЕРДЦЕ */
 .heart-img{
   position:absolute;
-  top:75%;        /* было 65% → ещё ниже */
-  left:54%;       /* было 51% → чуть правее */
-  transform:translate(-60%, -50%);
+  top:78%;       /* чуть ниже */
+  left:52%;      /* чуть левее */
   width:36px;
+  animation:pulse 1.6s ease-in-out infinite;
 }
 </style>
 
