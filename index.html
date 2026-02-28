@@ -281,3 +281,107 @@ body{
 
 </section>
 
+<!-- ================= SECTION 3 ================= -->
+
+<style>
+.section3{
+  position:relative;
+  min-height:100vh;
+  min-height:100dvh;
+  background:url("assets/bg/section3_bg.jpg") center/cover no-repeat;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding:0 20px;
+  text-align:center;
+  color:#fff;
+}
+
+/* чёрный overlay */
+.section3::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+  z-index:0;
+}
+
+.section3-content{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:900px;
+  margin-top:30vh; /* старт ~30% сверху */
+}
+
+/* общий Primary размер (как договорились) */
+.primary-text{
+  font-family:"PrimaryFont", serif;
+  font-size:clamp(42px,8.8vw,72px);
+  line-height:1.05;
+  margin:0;
+}
+
+/* общий Secondary размер (как договорились) */
+.secondary-text{
+  font-family:"SecondaryFont", serif;
+  font-size:clamp(18px,4.5vw,28px);
+  letter-spacing:5px;
+  text-transform:uppercase;
+  margin:0;
+  opacity:0.95;
+}
+
+/* строка времени с линиями */
+.time-row{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  margin-top:22px;
+  padding:0 5vw; /* линии не доходят до краёв ~5% */
+}
+
+.time-row .line{
+  height:1px;
+  background:rgba(255,255,255,0.9);
+  flex:1;
+}
+
+.time-row .time{
+  font-family:"PrimaryFont", serif;
+  font-size:clamp(34px,7.2vw,60px); /* чуть меньше, чем заголовок, но всё ещё primary */
+  letter-spacing:2px;
+  line-height:1;
+  white-space:nowrap;
+}
+
+/* отступ между блоками 18:00/19:00 */
+.block-gap{
+  margin-top:26px; /* "чуть больше" */
+}
+</style>
+
+<section class="section3">
+  <div class="section3-content">
+
+    <p class="primary-text">Бағдарлама</p>
+
+    <!-- 18:00 -->
+    <div class="time-row">
+      <div class="line"></div>
+      <div class="time">18:00</div>
+      <div class="line"></div>
+    </div>
+    <p class="secondary-text">БЕТАШАР</p>
+
+    <!-- 19:00 -->
+    <div class="time-row block-gap">
+      <div class="line"></div>
+      <div class="time">19:00</div>
+      <div class="line"></div>
+    </div>
+    <p class="secondary-text">ТОЙ БАСТАЛУЫ</p>
+
+  </div>
+</section>
