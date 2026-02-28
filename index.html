@@ -1,6 +1,34 @@
-<!-- ================= HERO ================= -->
+<!doctype html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Бақжан Мерей</title>
 
 <style>
+
+/* ===== ШРИФТЫ ===== */
+@font-face{
+  font-family:"PrimaryFont";
+  src:url("assets/fonts/primary.woff2") format("woff2");
+  font-display:swap;
+}
+
+@font-face{
+  font-family:"SecondaryFont";
+  src:url("assets/fonts/secondary.woff2") format("woff2");
+  font-display:swap;
+}
+
+/* ===== БАЗА ===== */
+body{
+  margin:0;
+  background:#000;
+  color:#fff;
+  font-family:"PrimaryFont", serif;
+}
+
+/* ===== HERO ===== */
 .hero{
   position:relative;
   min-height:100vh;
@@ -11,7 +39,6 @@
   padding:60px 20px;
   overflow:hidden;
   text-align:center;
-  color:white;
 }
 
 .hero video{
@@ -23,7 +50,7 @@
   z-index:-2;
 }
 
-.hero .overlay{
+.overlay{
   position:absolute;
   inset:0;
   background:rgba(0,0,0,0.45);
@@ -47,14 +74,19 @@
 .sub-title{
   margin-top:18px;
   font-family:"SecondaryFont", serif;
-  font-size:clamp(18px,4.5vw,28px); /* 👈 обновлено */
+  font-size:clamp(18px,4.5vw,28px); /* 28 максимум */
   letter-spacing:6px;
   text-transform:uppercase;
   opacity:0.92;
 }
+
 </style>
+</head>
+
+<body>
 
 <header class="hero">
+
   <video autoplay muted loop playsinline preload="auto">
     <source src="assets/bg/hero.mp4" type="video/mp4">
   </video>
@@ -65,4 +97,8 @@
     <h1 class="main-title">Бақжан Мерей</h1>
     <div class="sub-title">ҮЙЛЕНУ ТОЙЫ</div>
   </div>
+
 </header>
+
+</body>
+</html>
