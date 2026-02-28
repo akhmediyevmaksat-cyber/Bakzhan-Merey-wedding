@@ -6,40 +6,41 @@
 <title>Бакжан Мерей</title>
 
 <style>
-
-/* ===== ШРИФТЫ ===== */
-@font-face {
-  font-family: 'Primary';
-  src: url('assets/fonts/Font1.woff2') format('woff2');
+@font-face{
+  font-family:"PrimaryFont";
+  src:url("assets/fonts/primary.woff2") format("woff2");
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
 }
 
-@font-face {
-  font-family: 'Secondary';
-  src: url('assets/fonts/Font2.woff2') format('woff2');
+@font-face{
+  font-family:"SecondaryFont";
+  src:url("assets/fonts/secondary.woff2") format("woff2");
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
 }
 
-/* ===== БАЗА ===== */
 body{
   margin:0;
-  background:black;
-  color:white;
-  font-family:'Primary', serif;
+  background:#000;
+  color:#fff;
+  font-family:"PrimaryFont", serif;
 }
 
-/* ===== HERO ===== */
 .hero{
   position:relative;
   min-height:100vh;
   min-height:100dvh;
   display:flex;
-  align-items:flex-end; /* 👈 текст внизу */
+  align-items:flex-end; /* текст внизу */
   justify-content:center;
   padding:40px 20px;
   overflow:hidden;
   text-align:center;
 }
 
-/* Видео */
 .bg-video{
   position:absolute;
   inset:0;
@@ -49,7 +50,6 @@ body{
   z-index:-2;
 }
 
-/* Затемнение */
 .overlay{
   position:absolute;
   inset:0;
@@ -57,40 +57,33 @@ body{
   z-index:-1;
 }
 
-/* Контент */
 .hero-content{
   position:relative;
   z-index:1;
   width:100%;
-  max-width:600px;
+  max-width:680px;
 }
 
-/* Основной текст */
 h1{
   margin:0;
-  font-size: clamp(38px, 8vw, 64px);
+  font-family:"PrimaryFont", serif; /* основной шрифт */
+  font-size:clamp(38px, 8vw, 64px);
   letter-spacing:4px;
-  font-family:'Primary', serif; /* 👈 основной шрифт */
 }
-
 </style>
 </head>
 
 <body>
+  <div class="hero">
+    <video autoplay muted loop playsinline class="bg-video">
+      <source src="assets/bg/hero.mp4" type="video/mp4">
+    </video>
 
-<div class="hero">
+    <div class="overlay"></div>
 
-  <video autoplay muted loop playsinline class="bg-video">
-    <source src="assets/bg/hero.mp4" type="video/mp4">
-  </video>
-
-  <div class="overlay"></div>
-
-  <div class="hero-content">
-    <h1>Бакжан Мерей</h1>
+    <div class="hero-content">
+      <h1>Бакжан Мерей</h1>
+    </div>
   </div>
-
-</div>
-
 </body>
 </html>
