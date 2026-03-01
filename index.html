@@ -1015,9 +1015,6 @@ document.addEventListener("keydown", function(e){
   position:fixed;
   inset:0;
   z-index:10000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
   background:rgba(0,0,0,0.65);
   backdrop-filter: blur(8px);
   transition: opacity .35s ease, visibility .35s ease;
@@ -1029,59 +1026,55 @@ document.addEventListener("keydown", function(e){
   pointer-events:none;
 }
 
-.entry-card{
-  padding:26px 26px;
-  border-radius:24px;
-  background:rgba(255,255,255,0.12);
-  border:1px solid rgba(255,255,255,0.25);
-  box-shadow:0 18px 55px rgba(0,0,0,0.35);
+.entry-center{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
   text-align:center;
-  max-width:90vw;
-  cursor:pointer;
 }
 
 .entry-title{
   font-family:"PrimaryFont", serif;
   font-size:clamp(34px,7.5vw,62px);
   color:#fff;
-  line-height:1.05;
   margin:0;
-}
-
-.entry-hint{
-  font-family:"SecondaryFont", serif;
-  font-size:clamp(12px,3.4vw,16px);
-  letter-spacing:4px;
-  text-transform:uppercase;
-  color:rgba(255,255,255,0.85);
-  margin-top:14px;
 }
 </style>
 
 <div class="entry-overlay" id="entryOverlay">
-  <div class="entry-card" id="entryCard">
+  <div class="entry-center">
     <p class="entry-title">Шақыру хатты ашу</p>
-    <div class="entry-hint">ТҮРТІҢІЗ</div>
   </div>
 </div>
 
 <script>
 (function(){
   const overlay = document.getElementById("entryOverlay");
-  const card = document.getElementById("entryCard");
   const audio = document.getElementById("bgMusic");
 
+  let started = false;
+
   async function startExperience(){
+    if(started) return;
+    started = true;
+
     try{
       audio.volume = 0.75;
       await audio.play();
     }catch(err){
-      console.log("Audio blocked:", err);
+      console.log("Audio play blocked:", err);
     }
+
     overlay.classList.add("hidden");
+
+    // удаляем слушатели после первого касания
+    document.removeEventListener("click", startExperience);
+    document.removeEventListener("touchstart", startExperience);
   }
 
-  card.addEventListener("click", startExperience, { once:true });
-  card.addEventListener("touchstart", startExperience, { once:true });
+  // Срабатывает при ЛЮБОМ первом касании
+  document.addEventListener("click", startExperience);
+  document.addEventListener("touchstart", startExperience);
 })();
 </script>
