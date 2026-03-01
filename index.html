@@ -583,7 +583,7 @@ body{
   gap:22px;
 }
 
-/* 👇 Поле имени: secondary + капс + больше размер */
+/* Поле имени: secondary + капс + больше размер */
 .rsvp-form input[type="text"]{
   padding:16px 20px;
   border-radius:12px;
@@ -597,11 +597,6 @@ body{
   outline:none;
 }
 
-.rsvp-form input[type="text"]::placeholder{
-  opacity:0.6;
-}
-
-/* Радио */
 .radio-group{
   display:flex;
   flex-direction:column;
@@ -659,34 +654,66 @@ body{
   100% { left:120%; }
 }
 
-/* ===== ПЛАШКА (TOAST) ===== */
-.toast{
+/* ===== MODAL (оверлей + стеклянная карточка) ===== */
+.modal{
   position:fixed;
-  left:50%;
-  bottom:26px;
-  transform:translateX(-50%) translateY(20px);
-  background:rgba(0,0,0,0.88);
-  color:#fff;
-  padding:14px 22px;
-  border-radius:999px;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  display:flex;
+  align-items:center;
+  justify-content:center;
   opacity:0;
-  pointer-events:none;
-  transition:all 0.35s ease;
+  visibility:hidden;
+  transition:all 0.28s ease;
   z-index:9999;
-  box-shadow:0 10px 30px rgba(0,0,0,0.25);
+  padding:20px;
 }
 
-.toast.active{
+.modal.active{
   opacity:1;
-  transform:translateX(-50%) translateY(0);
+  visibility:visible;
 }
 
-.toast-text{
+.modal-card{
+  width:min(520px, 92vw);
+  border-radius:22px;
+  padding:34px 28px;
+  background:rgba(255,255,255,0.86);
+  backdrop-filter: blur(10px);
+  border:1px solid rgba(255,255,255,0.55);
+  box-shadow:0 18px 50px rgba(0,0,0,0.25);
+  transform:translateY(8px) scale(0.98);
+  transition:transform 0.28s ease;
+}
+
+.modal.active .modal-card{
+  transform:translateY(0) scale(1);
+}
+
+.modal-text{
   font-family:"SecondaryFont", serif;
-  font-size:clamp(14px,3.6vw,18px);
+  font-size:clamp(18px,5vw,28px);
+  letter-spacing:5px;
+  text-transform:uppercase;
+  color:#000;
+  line-height:1.25;
+}
+
+.modal-btn{
+  margin-top:22px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 26px;
+  border-radius:999px;
+  border:none;
+  background:#000;
+  color:#fff;
+  font-family:"SecondaryFont", serif;
   letter-spacing:4px;
   text-transform:uppercase;
-  white-space:nowrap;
+  font-size:clamp(12px,3.4vw,16px);
+  cursor:pointer;
 }
 </style>
 
@@ -696,6 +723,7 @@ body{
     <p class="s5-primary">Тойға келетініңізді</p>
     <p class="s5-primary">растауыңызды өтінеміз</p>
 
+    <!-- ВАЖНО: нет action/method -->
     <form class="rsvp-form" id="rsvpForm">
 
       <label class="s5-secondary">АТЫ-ЖӨНІҢІЗ</label>
@@ -708,12 +736,10 @@ body{
           <input type="radio" name="Ответ" value="ӘРИНЕ КЕЛЕМІН" required>
           ӘРИНЕ КЕЛЕМІН
         </label>
-
         <label class="radio-option">
           <input type="radio" name="Ответ" value="ЖҰБАЙЫММЕН КЕЛЕМІН">
           ЖҰБАЙЫММЕН КЕЛЕМІН
         </label>
-
         <label class="radio-option">
           <input type="radio" name="Ответ" value="ӨКІНІШКЕ ОРАЙ, КЕЛЕ АЛМАЙМЫН">
           ӨКІНІШКЕ ОРАЙ, КЕЛЕ АЛМАЙМЫН
@@ -721,44 +747,62 @@ body{
       </div>
 
       <button type="submit" class="submit-btn">ЖІБЕРУ</button>
-
     </form>
 
   </div>
 </section>
 
-<!-- Плашка -->
-<div class="toast" id="successToast">
-  <div class="toast-text">ЖАУАБЫҢЫЗ ҮШІН РАҚМЕТ</div>
+<!-- MODAL -->
+<div class="modal" id="successModal" aria-hidden="true">
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <div class="modal-text">ЖАУАБЫҢЫЗ ҮШІН РАҚМЕТ</div>
+    <button class="modal-btn" id="closeModalBtn" type="button">ЖАБЫП ЖІБЕРУ</button>
+  </div>
 </div>
 
 <script>
 const scriptURL = "https://script.google.com/macros/s/AKfycbzLgSU-FFUckggCxVGP-r16wovrKfZdqVNbwF5e4QtgkIe1TGqAd589VWK58BetfikkJg/exec";
 
-const toast = document.getElementById("successToast");
+const form = document.getElementById("rsvpForm");
+const modal = document.getElementById("successModal");
+const closeBtn = document.getElementById("closeModalBtn");
 
-function showToast(){
-  toast.classList.add("active");
-  clearTimeout(window.__toastTimer);
-  window.__toastTimer = setTimeout(() => {
-    toast.classList.remove("active");
-  }, 2600);
+function openModal(){
+  modal.classList.add("active");
+  modal.setAttribute("aria-hidden", "false");
 }
 
-document.getElementById("rsvpForm").addEventListener("submit", function(e){
+function closeModal(){
+  modal.classList.remove("active");
+  modal.setAttribute("aria-hidden", "true");
+}
+
+form.addEventListener("submit", function(e){
   e.preventDefault();
 
-  const formData = new FormData(this);
+  const formData = new FormData(form);
 
+  // Если CORS мешает читать ответ — не страшно, мы просто отправляем
   fetch(scriptURL, {
     method: "POST",
+    mode: "no-cors",
     body: formData
-  })
-  .then(() => {
-    showToast();
-    this.reset();
-  })
-  .catch(() => alert("Қате пайда болды"));
+  });
+
+  openModal();
+  form.reset();
+});
+
+closeBtn.addEventListener("click", closeModal);
+
+// закрытие кликом по фону
+modal.addEventListener("click", function(e){
+  if(e.target === modal) closeModal();
+});
+
+// закрытие по ESC
+document.addEventListener("keydown", function(e){
+  if(e.key === "Escape") closeModal();
 });
 </script>
 
@@ -959,4 +1003,5 @@ document.getElementById("rsvpForm").addEventListener("submit", function(e){
   setInterval(tick, 1000);
 })();
 </script>
+
 
