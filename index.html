@@ -351,7 +351,8 @@ body{
 .primary-text{
   font-family:"PrimaryFont", serif;
   font-size:clamp(42px,8.8vw,72px);
-  line-height:1.05;
+  line-height:1.2;  /* 👈 увеличили */
+  padding-top:6px;  /* 👈 добавили воздух сверху */
   margin:0;
 }
 
@@ -1209,6 +1210,7 @@ document.addEventListener("keydown", function(e){
   document.addEventListener("touchstart", startExperience, { passive:true });
 })();
 </script>
+
 
 
 
