@@ -1007,7 +1007,7 @@ document.addEventListener("keydown", function(e){
 
 <!-- ===== BACKGROUND MUSIC ===== -->
 <audio id="bgMusic" preload="auto" loop playsinline>
-  <source src="assets/music_bg.mp3" type="audio/mpeg">
+  <source src="assets/bg/music_bg.mp3" type="audio/mpeg">
 </audio>
 
 <style>
@@ -1015,36 +1015,123 @@ document.addEventListener("keydown", function(e){
   position:fixed;
   inset:0;
   z-index:10000;
-  background:rgba(0,0,0,0.65);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,0.70);
   backdrop-filter: blur(8px);
-  transition: opacity .35s ease, visibility .35s ease;
+  transition: opacity .55s ease, visibility .55s ease;
 }
-
 .entry-overlay.hidden{
   opacity:0;
   visibility:hidden;
   pointer-events:none;
 }
 
-.entry-center{
+.envelope-wrap{
+  width:min(360px, 86vw);
+  aspect-ratio: 4 / 3;
+  position:relative;
+  transform:translateZ(0);
+  user-select:none;
+}
+.envelope{
   position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
+  inset:0;
+  border-radius:22px;
+  background:rgba(255,255,255,0.10);
+  border:1px solid rgba(255,255,255,0.22);
+  box-shadow:0 22px 65px rgba(0,0,0,0.45);
+  overflow:hidden;
+}
+
+.env-front-left,
+.env-front-right{
+  position:absolute;
+  bottom:-10%;
+  width:60%;
+  height:70%;
+  background:rgba(255,255,255,0.14);
+  transform:rotate(45deg);
+}
+.env-front-left{ left:-20%; }
+.env-front-right{ right:-20%; }
+
+.env-flap{
+  position:absolute;
+  left:0; right:0; top:0;
+  height:55%;
+  transform-origin: top center;
+  background:linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.10));
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  border-top-left-radius:22px;
+  border-top-right-radius:22px;
+  border:1px solid rgba(255,255,255,0.18);
+  border-bottom:none;
+  transform:rotateX(0deg);
+  transition: transform .7s cubic-bezier(.2,.9,.2,1);
+}
+
+.letter{
+  position:absolute;
+  left:7%;
+  right:7%;
+  bottom:10%;
+  height:70%;
+  border-radius:18px;
+  background:rgba(255,255,255,0.85);
+  box-shadow:0 12px 35px rgba(0,0,0,0.25);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  transform:translateY(18%);
+  transition: transform .7s cubic-bezier(.2,.9,.2,1), opacity .35s ease;
+}
+
+.letter-text{
+  font-family:"PrimaryFont", serif;
+  font-size:clamp(28px,6.5vw,46px);
+  color:#000;
+  text-align:center;
+  line-height:1.05;
+}
+
+.tap-hint{
+  margin-top:18px;
+  font-family:"SecondaryFont", serif;
+  font-size:clamp(12px,3.4vw,16px);
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.85);
   text-align:center;
 }
 
-.entry-title{
-  font-family:"PrimaryFont", serif;
-  font-size:clamp(34px,7.5vw,62px);
-  color:#fff;
-  margin:0;
+.entry-overlay.opening .env-flap{
+  transform:rotateX(165deg);
+}
+.entry-overlay.opening .letter{
+  transform:translateY(-12%);
+}
+
+@media (prefers-reduced-motion: reduce){
+  .env-flap, .letter, .entry-overlay{ transition:none !important; }
 }
 </style>
 
 <div class="entry-overlay" id="entryOverlay">
-  <div class="entry-center">
-    <p class="entry-title">Шақыру хатты ашу</p>
+  <div>
+    <div class="envelope-wrap">
+      <div class="envelope">
+        <div class="env-flap"></div>
+        <div class="env-front-left"></div>
+        <div class="env-front-right"></div>
+        <div class="letter">
+          <div class="letter-text">Шақыру хатты ашу</div>
+        </div>
+      </div>
+    </div>
+    <div class="tap-hint">ТҮРТІҢІЗ</div>
   </div>
 </div>
 
@@ -1052,29 +1139,43 @@ document.addEventListener("keydown", function(e){
 (function(){
   const overlay = document.getElementById("entryOverlay");
   const audio = document.getElementById("bgMusic");
-
   let started = false;
+
+  function fadeInAudio(aud, targetVol=0.75, ms=1600){
+    aud.volume = 0;
+    const steps = 30;
+    const stepMs = ms / steps;
+    let i = 0;
+    const t = setInterval(() => {
+      i++;
+      aud.volume = Math.min(targetVol, (targetVol * i) / steps);
+      if(i >= steps) clearInterval(t);
+    }, stepMs);
+  }
 
   async function startExperience(){
     if(started) return;
     started = true;
 
+    overlay.classList.add("opening");
+
     try{
-      audio.volume = 0.75;
-      await audio.play();
+      audio.currentTime = 0;
+      await audio.play();            // запускаем строго по жесту
+      fadeInAudio(audio, 0.75, 1600);
     }catch(err){
-      console.log("Audio play blocked:", err);
+      console.log("Audio blocked:", err);
     }
 
-    overlay.classList.add("hidden");
+    setTimeout(() => {
+      overlay.classList.add("hidden");
+    }, 750);
 
-    // удаляем слушатели после первого касания
     document.removeEventListener("click", startExperience);
     document.removeEventListener("touchstart", startExperience);
   }
 
-  // Срабатывает при ЛЮБОМ первом касании
-  document.addEventListener("click", startExperience);
-  document.addEventListener("touchstart", startExperience);
+  document.addEventListener("click", startExperience, { passive:true });
+  document.addEventListener("touchstart", startExperience, { passive:true });
 })();
 </script>
