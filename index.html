@@ -760,9 +760,20 @@ body{
   padding-bottom:22px;
 }
 
-/* Отступ перед финальным блоком */
+/* ⬇️ Отступ увеличили в 2 раза */
 .s6-gap{
-  margin-top:70px;
+  margin-top:140px; /* было 70px */
+}
+
+/* Блок имён */
+.names-block{
+  margin-top:22px;
+}
+
+.ampersand{
+  font-family:"PrimaryFont", serif;
+  font-size:clamp(36px,7vw,60px);
+  margin:10px 0;
 }
 </style>
 
@@ -808,7 +819,11 @@ body{
       <p class="s6-secondary" style="margin-top:28px;">ҚҰРМЕТПЕН</p>
       <p class="s6-secondary">ТОЙ ИЕЛЕРІ:</p>
 
-      <p class="s6-primary" style="margin-top:18px;">Камшат & Жандаулет</p>
+      <div class="names-block">
+        <p class="s6-primary">Жандаулет</p>
+        <div class="ampersand">&</div>
+        <p class="s6-primary">Камшат</p>
+      </div>
     </div>
 
   </div>
