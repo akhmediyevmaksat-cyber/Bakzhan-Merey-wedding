@@ -280,9 +280,9 @@ body{
   max-width:900px;
 }
 
-/* 👇 Текст подняли выше */
+/* Текст */
 .section2-top{
-  margin-top:30vh; /* было 38vh */
+  margin-top:30vh;
 }
 
 .section2-bottom{
@@ -293,10 +293,11 @@ body{
 .primary-text{
   font-family:"PrimaryFont", serif;
   font-size:clamp(42px,8.8vw,72px);
-  line-height:1.05;
+  line-height:1.12; /* чуть безопаснее чтобы не резало */
   margin:0;
 }
 
+/* Calendar block */
 .calendar-wrapper{
   position:relative;
   display:inline-block;
@@ -305,20 +306,33 @@ body{
 .calendar-img{
   width:415px;
   max-width:85vw;
+  height:auto;
+  display:block; /* важно для стабильного layout */
 }
 
+/* ✅ Пульс БЕЗ сдвига позиции */
 @keyframes pulse{
-  0%   { transform:translate(-60%, -50%) scale(1); }
-  50%  { transform:translate(-60%, -50%) scale(1.15); }
-  100% { transform:translate(-60%, -50%) scale(1); }
+  0%   { transform:translate(-50%, -50%) scale(1); }
+  50%  { transform:translate(-50%, -50%) scale(1.15); }
+  100% { transform:translate(-50%, -50%) scale(1); }
 }
 
 .heart-img{
   position:absolute;
+
+  /* 🎯 точка крепления сердца */
   top:79%;
   left:51.5%;
+
+  /* ✅ всегда центрируем по этой точке */
+  transform:translate(-50%, -50%);
+
   width:36px;
+  height:auto;
+  display:block;
+
   animation:pulse 1.6s ease-in-out infinite;
+  will-change:transform;
 }
 </style>
 
@@ -1233,6 +1247,7 @@ document.addEventListener("keydown", function(e){
   document.addEventListener("touchstart", startExperience, { passive:true });
 })();
 </script>
+
 
 
 
