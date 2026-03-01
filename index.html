@@ -74,8 +74,7 @@ body{
 /* ===== HERO ===== */
 .hero{
   position:relative;
-  min-height:100vh;
-  min-height:100dvh;
+  min-height: var(--app-height);
   display:flex;
   align-items:flex-end;
   justify-content:center;
@@ -151,8 +150,7 @@ body{
 <style>
 .section1{
   position:relative;
-  min-height:100vh;
-  min-height:100dvh;
+  min-height: var(--app-height);
   background:url("assets/bg/section1_bg.jpg") center/cover no-repeat; /* 👈 JPG */
   display:flex;
   align-items:flex-start;
@@ -239,8 +237,7 @@ body{
 <style>
 .section2{
   position:relative;
-  min-height:100vh;
-  min-height:100dvh;
+  min-height: var(--app-height);
   background:url("assets/bg/section2_bg.png") center/cover no-repeat;
   display:flex;
   flex-direction:column;
@@ -329,8 +326,7 @@ body{
 <style>
 .section3{
   position:relative;
-  min-height:100vh;
-  min-height:100dvh;
+  min-height: var(--app-height);
   background:url("assets/bg/section3_bg.jpg") center/cover no-repeat;
   display:flex;
   align-items:flex-start;
@@ -434,8 +430,7 @@ body{
 <style>
 .section4{
   position:relative;
-  min-height:100vh;
-  min-height:100dvh;
+  min-height: var(--app-height);
   background:url("assets/bg/section4_bg.png") center/cover no-repeat;
   display:flex;
   align-items:flex-start;
@@ -574,8 +569,7 @@ body{
 <style>
 .section5{
   position:relative;
-  min-height:100vh;
-  min-height:100dvh;
+  min-height: var(--app-height);
   background:url("assets/bg/section5_bg.png") center/cover no-repeat;
   display:flex;
   align-items:flex-start;
@@ -855,8 +849,7 @@ document.addEventListener("keydown", function(e){
 <style>
 .section6{
   position:relative;
-  min-height:100vh;
-  min-height:100dvh;
+  min-height: var(--app-height);
   background:url("assets/bg/section6_bg.jpg") center/cover no-repeat;
   display:flex;
   align-items:flex-start;
@@ -1222,4 +1215,5 @@ document.addEventListener("keydown", function(e){
   document.addEventListener("touchstart", startExperience, { passive:true });
 })();
 </script>
+
 
