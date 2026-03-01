@@ -1,3 +1,46 @@
+/* ================= MOBILE STABILITY FIX (iOS Safari) ================= */
+
+/* 1) Базовая стабильность размеров */
+html, body{
+  width:100%;
+  height:100%;
+  margin:0;
+  padding:0;
+  overflow-x:hidden;
+  -webkit-text-size-adjust:100%; /* iOS: не менять размер текста */
+}
+
+/* 2) Стабильная высота экрана (не дергается от адресной строки/клавиатуры) */
+:root{
+  --app-height: 100vh; /* fallback */
+}
+
+/* если браузер поддерживает svh — используем стабильную высоту */
+@supports (height: 100svh){
+  :root{ --app-height: 100svh; }
+}
+
+/* общий класс, если хочешь использовать вручную */
+.fullscreen{
+  min-height: var(--app-height);
+}
+
+/* 3) Классический iOS fix: не прыгать при фокусе */
+body{
+  min-height: var(--app-height);
+}
+
+/* 4) Запрет резкого “зум-ин” при фокусе на input (iOS zoom если <16px) */
+input, textarea, select, button{
+  font-size:16px; /* минимум 16px - иначе Safari зумит */
+  -webkit-text-size-adjust:100%;
+}
+
+/* 5) Плавное поведение скролла (убирает визуальные рывки) */
+*{
+  -webkit-tap-highlight-color: transparent;
+}
+
 <!doctype html>
 <html lang="kk">
 <head>
@@ -1179,3 +1222,4 @@ document.addEventListener("keydown", function(e){
   document.addEventListener("touchstart", startExperience, { passive:true });
 })();
 </script>
+
